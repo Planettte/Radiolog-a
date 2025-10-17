@@ -56,6 +56,7 @@ body {
   mix-blend-mode: overlay;
   z-index: 0;
   filter: blur(0.5px);
+  pointer-events: none;
 }
 
 /* ===== CONTENIDO ===== */
@@ -419,13 +420,12 @@ body {
 }
 /* BIBLIOGRAFÍA */
 .fuente {
-  font-size: 0.8rem !important;
+  font-size: 0.6rem !important;
   color: #5a4a36 !important;
   font-style: italic;
   border-left: 3px solid #3164af;
   padding-left: .6rem;
   margin-top: .8rem;
-  
 }
 .fuente a {
   color: #305fb0;
@@ -515,7 +515,9 @@ body {
 
 /* ======= TABLA DE PATOLOGÍAS ======= */
 .tabla-patologias {
+  width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .tabla-patologias table {
@@ -526,30 +528,43 @@ body {
   box-shadow: 0 4px 12px rgba(0,0,0,0.06);
   overflow: hidden;
   text-align: left;
+  table-layout: fixed;
 }
 
 .tabla-patologias thead {
   background: #e9eef8;
 }
 
-.tabla-patologias th {
-  font-family: 'Outfit', sans-serif;
-  font-weight: 700;
-  color: #254875;
-  padding: 1rem;
-  font-size: 1.05rem;
+.tabla-patologias th{
   text-align: center;
-}
-
-.tabla-patologias td {
   padding: 1rem;
-  border-top: 1px solid #e3e6ed;
-  vertical-align: middle;
-  color: #041325;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1e3f68;
+  border-bottom: 2px solid #cbd2e4;
+  word-break: break-word;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.tabla-patologias td {
+  text-align: center;
+  padding: 1rem;
   font-size: 1rem;
   line-height: 1.5;
-    text-align: center;
+  color: #041325;
+  border-top: 1px solid #e3e6ed;
+  word-break: break-word;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
 
+.tabla-patologias td img {
+  width: 240px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;
 }
 
 .tabla-patologias tbody tr:hover {
@@ -557,28 +572,194 @@ body {
   transition: background 0.2s ease;
 }
 
-/* IMÁGENES EN LA TABLA */
-.tabla-patologias td img {
-  width: 240px;
-  height: 140px;
-  border-radius: 10px;
-  display: block;
-  margin: 0 auto;
-}
-
 /* RESPONSIVE */
-@media (max-width: 850px) {
+@media (max-width: 1050px) {
   .tabla-patologias table {
-    font-size: 0.95rem;
-  }
-
-  .tabla-patologias td img {
-    width: 100px;
-    height: 100px;
+    min-width: 0;
   }
 
   .tabla-patologias th,
   .tabla-patologias td {
+    font-size: 0.9rem;
     padding: 0.75rem;
   }
+
+  .tabla-patologias td img {
+    width: 160px;
+    height: 100px;
+  }
 }
+
+@media (max-width: 650px) {
+  .tabla-patologias thead {
+    display: none;              /* ocultamos cabecera para el modo "cards" */
+  }
+
+  .tabla-patologias tbody tr {
+
+    gap: 0.5rem 1rem;
+    padding: 0.75rem;
+    margin-bottom: 0.9rem;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+    align-items: start;
+  }
+
+  .tabla-patologias tbody tr td:nth-child(1) { grid-column: 1 / 2; } /* Signo */
+  .tabla-patologias tbody tr td:nth-child(2) { grid-column: 1 / 2; } /* Descripción */
+  .tabla-patologias tbody tr td:nth-child(3) { grid-column: 1 / 2; } /* Alteración */
+  .tabla-patologias tbody tr td:nth-child(4) { grid-column: 2 / 3; } /* Imagen */
+
+  .tabla-patologias tbody tr td {
+    display: block;
+    padding: 0.15rem 0;
+    text-align: left;
+    font-size: 0.95rem;
+    margin-bottom: 20%;
+  }
+
+  .tabla-patologias tbody tr td:nth-child(1) { font-weight: 700; margin-bottom: 0.35rem; }
+  .tabla-patologias tbody tr td:nth-child(2) { color: #333; margin-bottom: 0.35rem; }
+  .tabla-patologias tbody tr td:nth-child(3) { color: #444; margin-bottom: 0.35rem; font-style: normal; }
+
+  .tabla-patologias tbody tr td:nth-child(4) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .tabla-patologias tbody tr td:nth-child(4) img {
+    width: 100%;
+    max-width: 120px;
+    height: auto;
+    object-fit: contain;
+  }
+}
+.imagenm4 {
+  width: 100%;
+  text-align: center;
+}
+
+.imagenm4 img {
+  width: 85%;
+  max-width: 700px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  margin-top: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .imagenm4 img {
+    width: 100%;
+    max-width: 350px; /* o 100% si quieres que ocupe todo el ancho */
+    height: auto;
+  }
+}
+
+/* ====== TÍTULO DE SECCIÓN ====== */
+.titulo-seccion {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #1e3f68;
+  text-align: center !important;
+  letter-spacing: 0.03em;
+  margin-bottom: 2rem;
+  border-bottom: 3px solid #dbe5f5;
+  padding-bottom: 0.4rem;
+}
+
+/* ====== TARJETA DE PROYECCIONES ====== */
+.proyecciones-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: 1.8rem;
+  width: 100%;
+  justify-items: center;
+  align-items: start;
+  text-align: center;
+}
+
+.proyecciones-grid .columna {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: 420px;
+}
+
+.proyecciones-grid img {
+  width: 100%;
+  max-width: 340px;
+  height: 270px;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  margin-bottom: 0.8rem;
+}
+
+.proyecciones-grid p {
+  font-size: 1rem;
+  color: #041325;
+  line-height: 1.5;
+  text-align: justify;
+  max-width: 340px;
+  min-height: 80px;
+}
+
+/* ===== SEPARADOR ===== */
+.separador {
+  width: 80%;
+  margin: 2.2rem auto;
+  border: none;
+  height: 2px;
+  background: linear-gradient(to right, #cad8ee, #91aad0, #cad8ee);
+  border-radius: 2px;
+  opacity: 0.8;
+}
+
+/* ===== SUBSECCIÓN DEBAJO ===== */
+.subseccion {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.subseccion h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #345e96;
+  margin-bottom: 0.6rem;
+}
+
+.subseccion p {
+  font-size: 1.05rem;
+  color: #041325;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .proyecciones-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .proyecciones-grid img {
+    height: auto;
+    max-width: 100%;
+  }
+
+  .proyecciones-grid p {
+    min-height: auto;
+  }
+
+  .subseccion {
+    text-align: center;
+  }
+
+  .titulo-seccion {
+    font-size: 1.6rem;
+  }
+}
+
